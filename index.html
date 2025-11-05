@@ -112,6 +112,14 @@
       </section>
     </main>
 
+  <!-- Lightbox overlay -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+    <button class="lb-btn lb-close" aria-label="Close">×</button>
+    <button class="lb-btn lb-prev" aria-label="Previous image">‹</button>
+    <img id="lightbox-img" alt="Fullscreen photo">
+    <button class="lb-btn lb-next" aria-label="Next image">›</button>
+  </div>
+
     <footer class="site-footer">
       <div class="container">
         <p>© <span id="year"></span> Raido Rüütel. All rights reserved.</p>
@@ -178,6 +186,68 @@
           select.addEventListener('change', function(){ setLanguage(this.value); });
         }
         setLanguage(initial);
+      })();
+
+      // Lightbox logic
+      (function initLightbox(){
+        var overlay = document.getElementById('lightbox');
+        var imgEl = document.getElementById('lightbox-img');
+        if (!overlay || !imgEl) return;
+
+        var images = Array.prototype.slice.call(document.querySelectorAll('#gallery .grid img'));
+        var current = -1;
+
+        function setBodyScroll(lock){ document.documentElement.style.overflow = lock ? 'hidden' : ''; document.body.style.overflow = lock ? 'hidden' : ''; }
+
+        function openAt(index){
+          if (index < 0 || index >= images.length) return;
+          current = index;
+          imgEl.src = images[current].getAttribute('src');
+          overlay.setAttribute('aria-hidden', 'false');
+          overlay.classList.add('open');
+          setBodyScroll(true);
+        }
+
+        function close(){
+          overlay.classList.remove('open');
+          overlay.setAttribute('aria-hidden', 'true');
+          imgEl.removeAttribute('src');
+          setBodyScroll(false);
+        }
+
+        function next(){ if (images.length) openAt((current + 1) % images.length); }
+        function prev(){ if (images.length) openAt((current - 1 + images.length) % images.length); }
+
+        images.forEach(function(el, idx){
+          el.addEventListener('dblclick', function(){ openAt(idx); });
+        });
+
+        overlay.addEventListener('click', function(e){
+          var target = e.target;
+          if (target.classList.contains('lb-next')) return next();
+          if (target.classList.contains('lb-prev')) return prev();
+          if (target.classList.contains('lb-close')) return close();
+          if (target === overlay) return close();
+        });
+
+        document.addEventListener('keydown', function(e){
+          if (!overlay.classList.contains('open')) return;
+          if (e.key === 'Escape') close();
+          if (e.key === 'ArrowRight') next();
+          if (e.key === 'ArrowLeft') prev();
+        });
+
+        // Basic touch swipe
+        var startX = 0; var startY = 0; var active = false;
+        overlay.addEventListener('touchstart', function(e){
+          if (!overlay.classList.contains('open')) return;
+          var t = e.touches[0]; startX = t.clientX; startY = t.clientY; active = true;
+        }, { passive: true });
+        overlay.addEventListener('touchend', function(e){
+          if (!active) return; active = false;
+          var t = e.changedTouches[0]; var dx = t.clientX - startX; var dy = t.clientY - startY;
+          if (Math.abs(dx) > 40 && Math.abs(dy) < 60) { if (dx < 0) next(); else prev(); }
+        });
       })();
     </script>
   </body>
