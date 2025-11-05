@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Raido Rüütel — Nature Photography</title>
+    <meta name="description" content="Portfolio one‑pager of hobby photographer Raido Rüütel: bogs, seaside, northern lights, and more.">
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top">Raido Rüütel</a>
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <h1 id="hero-title">Nature photography from Estonia</h1>
+          <p class="subtitle">Bogs, seaside, and northern lights through the lens of Raido Rüütel.</p>
+          <a class="cta" href="#gallery">View Gallery</a>
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <div class="container">
+          <h2>About</h2>
+          <div class="about-content">
+            <div class="about-text">
+              <p>
+                I’m Raido Rüütel, a hobby photographer drawn to quiet moments in nature —
+                misty bogs at dawn, windswept Baltic shores, and the glow of northern lights.
+                This page is a small selection of scenes that make me pause and look longer.
+              </p>
+              <p>
+                My photography is about patience and presence. I prefer unhurried walks and soft light,
+                letting weather and seasons set the mood.
+              </p>
+            </div>
+            <div class="about-photo">
+              <img src="./photos2/B35456E0-A6AB-46EC-B1C4-85C8BF999A77.jpg" alt="Portrait of Raido Rüütel" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <h2 id="gallery-title">Gallery</h2>
+          <div class="grid" role="list">
+            <figure class="card" role="listitem">
+              <img src="./photos1/DSC_2598.jpg" alt="Photo DSC_2598 by Raido Rüütel" loading="lazy">
+              <figcaption>Photo DSC_2598</figcaption>
+            </figure>
+            <figure class="card" role="listitem">
+              <img src="./photos1/IMGP2567.jpg" alt="Photo IMGP2567 by Raido Rüütel" loading="lazy">
+              <figcaption>Photo IMGP2567</figcaption>
+            </figure>
+            <figure class="card" role="listitem">
+              <img src="./photos1/IMGP3764-2.jpg" alt="Photo IMGP3764-2 by Raido Rüütel" loading="lazy">
+              <figcaption>Photo IMGP3764-2</figcaption>
+            </figure>
+            <figure class="card" role="listitem">
+              <img src="./photos1/IMGP3798.jpg" alt="Photo IMGP3798 by Raido Rüütel" loading="lazy">
+              <figcaption>Photo IMGP3798</figcaption>
+            </figure>
+            <figure class="card" role="listitem">
+              <img src="./photos1/IMGP5572-HDR.jpg" alt="Photo IMGP5572-HDR by Raido Rüütel" loading="lazy">
+              <figcaption>Photo IMGP5572-HDR</figcaption>
+            </figure>
+            <figure class="card" role="listitem">
+              <img src="./photos1/IMGP7181-Enhanced-NR.jpg" alt="Photo IMGP7181-Enhanced-NR by Raido Rüütel" loading="lazy">
+              <figcaption>Photo IMGP7181-Enhanced-NR</figcaption>
+            </figure>
+            <figure class="card" role="listitem">
+              <img src="./photos1/IMGP7245-Pano-Enhanced-NR.jpg" alt="Photo IMGP7245-Pano-Enhanced-NR by Raido Rüütel" loading="lazy">
+              <figcaption>Photo IMGP7245-Pano-Enhanced-NR</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div class="container">
+          <h2>Contact</h2>
+          <p>For prints or collaboration, feel free to reach out.</p>
+          <p>
+            <a class="cta secondary" href="mailto:raido@example.com" aria-label="Email Raido">
+              raido@example.com
+            </a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Raido Rüütel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Set current year without blocking rendering
+      (function setYear(){
+        var el = document.getElementById('year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+  </body>
+  </html>
+
+
